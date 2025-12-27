@@ -4,6 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Mythos Theme v1.4.14">
+
+    <!-- Prevent flash: set theme before CSS loads -->
+    <script>
+        (function() {
+            var theme = localStorage.getItem('theme') ||
+                (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
     
     <!-- Meta tags and title -->
     <meta name="twitter:card" content="summary">
@@ -105,7 +114,8 @@
     
     <!-- JavaScript -->
     <script src="/js/main.js" defer></script>
-    
+    <script src="/js/theme-toggle.js" defer></script>
+
     {{ if .Site.Params.custom_body_html }}
     {{ .Site.Params.custom_body_html | safeHTML }}
     {{ end }}

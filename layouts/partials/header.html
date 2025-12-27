@@ -28,7 +28,12 @@
                     <span></span>
                 </span>
             </label>
-            
+
+            <!-- Theme toggle button -->
+            <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark mode">
+                <span class="toggle-icon"></span>
+            </button>
+
             <!-- JavaScript fallback button (hidden by default) -->
             <button class="menu-toggle js-menu-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="Open main navigation menu" type="button" style="display: none;">
                 <span class="menu-toggle-text">{{ T "Menu" }}</span>
@@ -38,7 +43,7 @@
                     <span></span>
                 </span>
             </button>
-            
+
             <div class="menu-backdrop" id="menu-backdrop"></div>
             <div class="primary-menu" id="primary-menu" role="menu" aria-label="Navigation menu">
                 <div class="menu-content">

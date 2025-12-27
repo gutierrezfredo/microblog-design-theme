@@ -86,11 +86,13 @@
 }
 
 /* ===== DARK MODE =====
- * Automatically activates when user's device is set to dark mode.
+ * Activates via user preference OR manual toggle.
  * These colors override the light mode colors above.
  * Tip: Customize these colors to create your perfect dark mode experience. */
+
+/* Auto dark mode (system preference) */
 @media (prefers-color-scheme: dark) {
-    :root {
+    :root:not([data-theme="light"]) {
         /* DARK MODE COLORS
          * Note: These use softer colors than pure black/white for better eye comfort */
         --color-text: #e5e5e5;
@@ -104,79 +106,44 @@
         --color-link-hover: #e5e5e5;
         --color-accent: #888888;
     }
-    
-    /* SPECIAL CONTENT BLOCKS in Dark Mode
-     * These override the light mode versions for better dark mode contrast */
-    /* Blue informational blocks */
-    p.note {
-        background-color: #1a2533;
-        border-color: #2d4a5c;
-        border-left-color: #4a90cc;
-        color: #b3d7f0;
-    }
-    
-    /* Yellow warning blocks */
-    p.alert {
-        background-color: #332914;
-        border-color: #5c4a1a;
-        border-left-color: #cc9944;
-        color: #f0d9a3;
-    }
-    
-    /* Gray sidebar-style blocks */
-    p.aside {
-        background-color: #2a2a2a;
-        border-color: #404040;
-        border-left-color: #777777;
-        color: #cccccc;
-    }
-    
-    p.lead {
-        color: #cccccc;
-    }
-    
-    /* IMAGES in Dark Mode
-     * Add subtle border so images stand out from dark background */
-    img {
-        border: 1px solid var(--color-border-light);
-    }
-    
-    img.vintage {
-        border-color: #3a3a36;
-        background-color: #2a2a26;
-        box-shadow: 
-            0 2px 8px rgba(0, 0, 0, 0.3),
-            inset 0 0 0 1px rgba(255, 255, 255, 0.1),
-            0 0 0 1px #404036;
-    }
-    
-    /* CODE BLOCKS in Dark Mode 
-     * Dark theme for code and syntax highlighting */
-    /* Inline code */
-    code {
-        background-color: #2d2d2d;
-        border-color: var(--color-border);
-        color: #e5e5e5;
-    }
-    
-    /* Code blocks */
-    pre {
-        background-color: #2d2d2d;
-        border-color: var(--color-border);
-        color: #e5e5e5;
-    }
-    
-    /* HIGHLIGHT element in Dark Mode */
-    highlight, mark {
-        background-color: #4a4a00;
-        color: #ffffff;
-    }
-    
-    /* Fixes issue with Archive by Months plugin in Dark Mode */
-    .archive_years select {
-       color: #000;
-    }
 }
+
+/* Manual dark mode (toggle) */
+:root[data-theme="dark"] {
+    --color-text: #e5e5e5;
+    --color-text-light: #cccccc;
+    --color-text-muted: #999999;
+    --color-background: #1a1a1a;
+    --color-background-alt: #2a2a2a;
+    --color-border: #404040;
+    --color-border-light: #333333;
+    --color-link: #aaaaaa;
+    --color-link-hover: #e5e5e5;
+    --color-accent: #888888;
+}
+
+/* Dark mode content styles (for both auto and manual) */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) p.note { background-color: #1a2533; border-color: #2d4a5c; border-left-color: #4a90cc; color: #b3d7f0; }
+    :root:not([data-theme="light"]) p.alert { background-color: #332914; border-color: #5c4a1a; border-left-color: #cc9944; color: #f0d9a3; }
+    :root:not([data-theme="light"]) p.aside { background-color: #2a2a2a; border-color: #404040; border-left-color: #777777; color: #cccccc; }
+    :root:not([data-theme="light"]) p.lead { color: #cccccc; }
+    :root:not([data-theme="light"]) img { border: 1px solid var(--color-border-light); }
+    :root:not([data-theme="light"]) code { background-color: #2d2d2d; border-color: var(--color-border); color: #e5e5e5; }
+    :root:not([data-theme="light"]) pre { background-color: #2d2d2d; border-color: var(--color-border); color: #e5e5e5; }
+    :root:not([data-theme="light"]) highlight, :root:not([data-theme="light"]) mark { background-color: #4a4a00; color: #ffffff; }
+    :root:not([data-theme="light"]) .archive_years select { color: #000; }
+}
+
+[data-theme="dark"] p.note { background-color: #1a2533; border-color: #2d4a5c; border-left-color: #4a90cc; color: #b3d7f0; }
+[data-theme="dark"] p.alert { background-color: #332914; border-color: #5c4a1a; border-left-color: #cc9944; color: #f0d9a3; }
+[data-theme="dark"] p.aside { background-color: #2a2a2a; border-color: #404040; border-left-color: #777777; color: #cccccc; }
+[data-theme="dark"] p.lead { color: #cccccc; }
+[data-theme="dark"] img { border: 1px solid var(--color-border-light); }
+[data-theme="dark"] code { background-color: #2d2d2d; border-color: var(--color-border); color: #e5e5e5; }
+[data-theme="dark"] pre { background-color: #2d2d2d; border-color: var(--color-border); color: #e5e5e5; }
+[data-theme="dark"] highlight, [data-theme="dark"] mark { background-color: #4a4a00; color: #ffffff; }
+[data-theme="dark"] .archive_years select { color: #000; }
 
 /* ===== SMOOTH TRANSITIONS =====
  * Makes dark/light mode switching smooth and pleasant.
@@ -723,6 +690,9 @@ blockquote.verse cite {
  * Features automatic 2-column layout when you have 6+ menu items. */
 .site-navigation {
     position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
 }
 
 .menu-toggle {
@@ -2011,4 +1981,238 @@ details:first-of-type {
 details:last-of-type {
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
+}
+
+
+/* ===== PORTFOLIO HOMEPAGE =====
+ * Custom styles for portfolio layout.
+ * Uses existing Mythos CSS variables for automatic dark mode support.
+ */
+
+/* Portfolio Page Container */
+.portfolio-page {
+    max-width: var(--container-width-wide);
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+}
+
+/* Hero Section */
+.portfolio-hero {
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: var(--spacing-3xl) var(--spacing-lg);
+}
+
+.hero-name {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin: 0 0 var(--spacing-sm) 0;
+    color: var(--color-text);
+}
+
+.hero-title {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-weight: 400;
+    color: var(--color-text-muted);
+    margin: 0 0 var(--spacing-lg) 0;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
+
+.hero-about {
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-loose);
+    color: var(--color-text-light);
+    max-width: 500px;
+    margin: 0;
+}
+
+/* Section Header */
+.section-header {
+    text-align: center;
+    padding: var(--spacing-xl) 0 var(--spacing-2xl);
+}
+
+.section-label {
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-text-muted);
+    margin: 0;
+}
+
+/* Portfolio Grid */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+    padding-bottom: var(--spacing-3xl);
+}
+
+@media (min-width: 640px) {
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-xl);
+    }
+}
+
+@media (min-width: 1024px) {
+    .portfolio-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Category Card */
+.category-card {
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background-color: var(--color-background-alt);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-medium);
+    text-decoration: none;
+    transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+}
+
+.category-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-medium);
+    border-color: var(--color-text-muted);
+}
+
+/* Card Thumbnail */
+.card-thumbnail {
+    width: 100%;
+    height: 100%;
+}
+
+.card-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+    border: none;
+}
+
+.category-card:hover .card-thumbnail img {
+    transform: scale(1.05);
+}
+
+/* Placeholder for cards without images */
+.card-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-background-alt);
+}
+
+.card-placeholder span {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+}
+
+/* Card Overlay */
+.card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--spacing-lg);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+    color: #ffffff;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity var(--transition-base), transform var(--transition-base);
+}
+
+.category-card:hover .card-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 var(--spacing-xs) 0;
+    color: #ffffff;
+}
+
+.card-count {
+    font-size: var(--font-size-small);
+    opacity: 0.85;
+    color: #ffffff;
+}
+
+/* Dark mode adjustments for overlay */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .card-overlay {
+        background: linear-gradient(to top, rgba(255, 255, 255, 0.9) 0%, transparent 100%);
+    }
+
+    :root:not([data-theme="light"]) .card-name,
+    :root:not([data-theme="light"]) .card-count {
+        color: #1a1a1a;
+    }
+
+    :root:not([data-theme="light"]) .card-thumbnail img {
+        border: none;
+    }
+}
+
+[data-theme="dark"] .card-overlay {
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.9) 0%, transparent 100%);
+}
+
+[data-theme="dark"] .card-name,
+[data-theme="dark"] .card-count {
+    color: #1a1a1a;
+}
+
+[data-theme="dark"] .card-thumbnail img {
+    border: none;
+}
+
+
+/* ===== THEME TOGGLE BUTTON =====
+ * Moon emoji toggle in header navigation */
+
+.theme-toggle-btn {
+    background: none;
+    border: none;
+    padding: var(--spacing-sm);
+    cursor: pointer;
+    font-size: 1.35rem;
+    line-height: 1;
+    opacity: 0.7;
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.theme-toggle-btn:hover {
+    opacity: 1;
+    transform: scale(1.15);
+}
+
+.theme-toggle-btn:focus {
+    outline: none;
+}
+
+.theme-toggle-btn:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: var(--radius-small);
+}
+
+.toggle-icon {
+    display: inline-block;
 }
