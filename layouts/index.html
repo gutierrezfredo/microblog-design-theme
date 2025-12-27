@@ -8,40 +8,58 @@
         <p class="hero-about">{{ .Site.Params.portfolio_about | default .Site.Params.itunes_description }}</p>
     </section>
 
-    <!-- Section Header -->
-    <div class="section-header">
-        <h2 class="section-label">Selected Work</h2>
-    </div>
-
-    <!-- Portfolio Grid -->
-    <section class="portfolio-grid">
-        {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
-            {{ $pages := $taxonomy.Pages }}
-            {{ if gt (len $pages) 0 }}
-                {{ $latestPost := index $pages 0 }}
-
-                {{/* Get thumbnail from photos array */}}
-                {{ $thumbnail := "" }}
-                {{ with $latestPost.Params.photos }}
-                    {{ $thumbnail = index . 0 }}
-                {{ end }}
-
-                <a href="/categories/{{ $name | urlize }}/" class="category-card">
-                    <div class="card-thumbnail">
-                        {{ if $thumbnail }}
-                            <img src="{{ $thumbnail }}" alt="{{ $name }}" loading="lazy">
-                        {{ else }}
-                            <div class="card-placeholder">
-                                <span>{{ substr $name 0 1 | upper }}</span>
-                            </div>
-                        {{ end }}
-                    </div>
-                    <div class="card-overlay">
-                        <h3 class="card-name">{{ $name | title }}</h3>
-                        <span class="card-count">{{ len $pages }} {{ if eq (len $pages) 1 }}project{{ else }}projects{{ end }}</span>
-                    </div>
-                </a>
+    <!-- Case Studies -->
+    <section class="case-studies">
+        {{ range where .Site.RegularPages "Type" "post" }}
+            {{ $categories := .Params.categories }}
+            {{ $category := "" }}
+            {{ if $categories }}
+                {{ $category = index $categories 0 }}
             {{ end }}
+
+            <article class="case-study-card">
+                <div class="case-study-content">
+                    {{/* Category icon/badge */}}
+                    {{ if $category }}
+                    <div class="case-study-badge">
+                        <span class="badge-icon">{{ substr $category 0 1 | upper }}</span>
+                    </div>
+                    {{ end }}
+
+                    {{/* Title */}}
+                    <h2 class="case-study-title">{{ .Title | default "Untitled Project" }}</h2>
+
+                    {{/* Meta: Category & Year */}}
+                    <p class="case-study-meta">
+                        {{ if $category }}<span class="meta-category">{{ $category | title }}</span>{{ end }}
+                        <span class="meta-year">{{ .Date.Format "2006" }}</span>
+                    </p>
+
+                    {{/* Description */}}
+                    <p class="case-study-description">
+                        {{ .Summary | plainify | truncate 150 }}
+                    </p>
+
+                    {{/* Read More Button */}}
+                    <a href="{{ .Permalink }}" class="case-study-button">
+                        Read More <span class="button-arrow">→</span>
+                    </a>
+                </div>
+
+                <div class="case-study-images">
+                    {{ with .Params.photos }}
+                        {{ range first 3 . }}
+                        <div class="case-study-image">
+                            <img src="{{ . }}" alt="Project screenshot" loading="lazy">
+                        </div>
+                        {{ end }}
+                    {{ else }}
+                        <div class="case-study-placeholder">
+                            <span>{{ substr (.Title | default "P") 0 1 | upper }}</span>
+                        </div>
+                    {{ end }}
+                </div>
+            </article>
         {{ end }}
     </section>
 

@@ -61,6 +61,11 @@
     <meta name="fediverse:creator" content="{{ .Site.Params.fediverse_creator }}">
     {{ end }}
     
+    <!-- Google Fonts - Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <!-- CSS -->
     {{ if templates.Exists "partials/microhook-uncss.html" }}
     {{ partial "microhook-uncss.html" . }}
