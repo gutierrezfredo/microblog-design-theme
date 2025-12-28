@@ -1116,11 +1116,6 @@ blockquote.verse cite {
         font-size: var(--font-size-large);
     }
 
-    .nav-menu .search-icon {
-        display: block;
-        width: 20px;
-        height: 20px;
-    }
 
     /* Hide mobile-only elements */
     .menu-backdrop,
@@ -1375,7 +1370,7 @@ blockquote.verse cite {
 .post-subscribe {
     margin-top: var(--spacing-3xl);
     padding: var(--spacing-xl);
-    background-color: var(--color-background-alt);
+    background-color: var(--subscribe-tint, var(--color-background-alt));
     border-radius: var(--radius-large);
     text-align: center;
 }
@@ -1528,6 +1523,15 @@ blockquote.verse cite {
     align-items: center;
     justify-content: center;
     vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+    .footer-social svg,
+    .footer-social i {
+        width: 24px;
+        height: 24px;
+        font-size: 24px;
+    }
 }
 
 .powered-by {
@@ -2298,7 +2302,7 @@ details:last-of-type {
 
 .hero-name h1 span:first-child,
 .hero-name h1 span:last-child {
-    color: var(--color-text-muted);
+    opacity: 0.3;
 }
 
 .hero-title {

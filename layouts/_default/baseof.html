@@ -100,7 +100,28 @@
 </head>
 
 <body class="no-js">
-    <script>document.body.className = document.body.className.replace('no-js', 'js');</script>
+    <script>
+        document.body.className = document.body.className.replace('no-js', 'js');
+        // Random tint for subscribe card
+        (function() {
+            var tints = [
+                'rgba(99, 179, 237, 0.08)',   // blue
+                'rgba(154, 230, 180, 0.08)',  // green
+                'rgba(246, 173, 85, 0.08)',   // orange
+                'rgba(183, 148, 244, 0.08)'   // purple
+            ];
+            var darkTints = [
+                'rgba(99, 179, 237, 0.12)',
+                'rgba(154, 230, 180, 0.12)',
+                'rgba(246, 173, 85, 0.12)',
+                'rgba(183, 148, 244, 0.12)'
+            ];
+            var idx = Math.floor(Math.random() * tints.length);
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.documentElement.style.setProperty('--subscribe-tint', isDark ? darkTints[idx] : tints[idx]);
+            document.documentElement.style.setProperty('--subscribe-tint-idx', idx);
+        })();
+    </script>
     {{ partial "header.html" . }}
 
     {{ if templates.Exists "partials/microhook-after-header.html" }}

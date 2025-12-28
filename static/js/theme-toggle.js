@@ -18,6 +18,20 @@
             (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     }
 
+    // Tint colors for subscribe card
+    const tints = [
+        'rgba(99, 179, 237, 0.08)',
+        'rgba(154, 230, 180, 0.08)',
+        'rgba(246, 173, 85, 0.08)',
+        'rgba(183, 148, 244, 0.08)'
+    ];
+    const darkTints = [
+        'rgba(99, 179, 237, 0.12)',
+        'rgba(154, 230, 180, 0.12)',
+        'rgba(246, 173, 85, 0.12)',
+        'rgba(183, 148, 244, 0.12)'
+    ];
+
     // Update icon and label visibility based on current theme
     // Show sun + "Light" in dark mode (to switch to light)
     // Show moon + "Dark" in light mode (to switch to dark)
@@ -33,6 +47,9 @@
             if (labelLight) labelLight.style.display = 'none';
             if (labelDark) labelDark.style.display = '';
         }
+        // Update subscribe tint for theme
+        var idx = parseInt(getComputedStyle(html).getPropertyValue('--subscribe-tint-idx')) || 0;
+        html.style.setProperty('--subscribe-tint', theme === 'dark' ? darkTints[idx] : tints[idx]);
     }
 
     // Toggle theme
