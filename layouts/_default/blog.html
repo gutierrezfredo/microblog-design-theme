@@ -1,0 +1,41 @@
+{{ define "main" }}
+<div class="blog-page">
+    <header class="page-header">
+        <h1 class="page-title">{{ .Title }}</h1>
+        {{ with .Content }}
+        <div class="page-description">{{ . }}</div>
+        {{ end }}
+    </header>
+
+    <section class="blog-list">
+        {{ $blogPosts := where .Site.RegularPages "Type" "post" }}
+        {{ $filteredPosts := slice }}
+        {{ range $blogPosts }}
+            {{ if in .Params.categories "blogs" }}
+                {{ $filteredPosts = $filteredPosts | append . }}
+            {{ end }}
+        {{ end }}
+
+        {{ if gt (len $filteredPosts) 0 }}
+            {{ range $filteredPosts }}
+            <article class="blog-item">
+                <div class="blog-item-content">
+                    <span class="blog-item-date">{{ .Date.Format "January 2, 2006" }}</span>
+                    <h3 class="blog-item-title">
+                        <a href="{{ .Permalink }}">{{ .Title | default "Untitled" }}</a>
+                    </h3>
+                    <a href="{{ .Permalink }}" class="blog-item-link">Read <span>→</span></a>
+                </div>
+                {{ with .Params.photos }}
+                <a href="{{ $.Permalink }}" class="blog-item-image">
+                    <img src="{{ index . 0 }}" alt="{{ $.Title }}" loading="lazy">
+                </a>
+                {{ end }}
+            </article>
+            {{ end }}
+        {{ else }}
+            <p class="no-posts">No blog posts yet.</p>
+        {{ end }}
+    </section>
+</div>
+{{ end }}

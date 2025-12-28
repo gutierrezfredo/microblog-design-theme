@@ -28,6 +28,7 @@
     --color-background-alt: #f8f9fa;
     --color-border: #e1e5e9;
     --color-border-light: #f1f3f4;
+    --color-input-border: #b0b5ba;
     --color-link: #555555;
     --color-link-hover: #000000;
     --color-accent: #666666;
@@ -61,7 +62,7 @@
     --container-width: 42rem;
     --container-width-wide: 62rem;
     --header-height: 4.75rem;
-    --touch-target-height: 44px;
+    --touch-target-height: 48px;
     --button-padding: var(--spacing-md) var(--spacing-lg);
     --button-padding-compact: var(--spacing-sm) var(--spacing-md);
     
@@ -93,33 +94,34 @@
 /* Auto dark mode (system preference) */
 @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-        /* DARK MODE COLORS
-         * Note: These use softer colors than pure black/white for better eye comfort */
-        --color-text: #e5e5e5;
-        --color-text-light: #cccccc;
-        --color-text-muted: #999999;
-        --color-background: #1a1a1a;
-        --color-background-alt: #2a2a2a;
-        --color-border: #404040;
-        --color-border-light: #333333;
-        --color-link: #aaaaaa;
-        --color-link-hover: #e5e5e5;
-        --color-accent: #888888;
+        /* DARK MODE COLORS - Bluish backgrounds, neutral text */
+        --color-text: #f5f5f5;
+        --color-text-light: #e0e0e0;
+        --color-text-muted: #888888;
+        --color-background: #080a0f;
+        --color-background-alt: #0f1318;
+        --color-border: #1a1e28;
+        --color-border-light: #141820;
+        --color-input-border: #454a55;
+        --color-link: #c0c0c0;
+        --color-link-hover: #ffffff;
+        --color-accent: #a0a0a0;
     }
 }
 
 /* Manual dark mode (toggle) */
 :root[data-theme="dark"] {
-    --color-text: #e5e5e5;
-    --color-text-light: #cccccc;
-    --color-text-muted: #999999;
-    --color-background: #1a1a1a;
-    --color-background-alt: #2a2a2a;
-    --color-border: #404040;
-    --color-border-light: #333333;
-    --color-link: #aaaaaa;
-    --color-link-hover: #e5e5e5;
-    --color-accent: #888888;
+    --color-text: #f5f5f5;
+    --color-text-light: #e0e0e0;
+    --color-text-muted: #888888;
+    --color-background: #080a0f;
+    --color-background-alt: #0f1318;
+    --color-border: #1a1e28;
+    --color-border-light: #141820;
+    --color-input-border: #454a55;
+    --color-link: #c0c0c0;
+    --color-link-hover: #ffffff;
+    --color-accent: #a0a0a0;
 }
 
 /* Dark mode content styles (for both auto and manual) */
@@ -309,8 +311,22 @@ a:hover {
     text-decoration-thickness: 2px;
 }
 
-/* Link focus state - when keyboard user tabs to link (accessibility) */
+/* Link focus state - only show for keyboard navigation (accessibility) */
 a:focus {
+    outline: none;
+}
+
+a:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+/* Button focus state - only show for keyboard navigation */
+button:focus {
+    outline: none;
+}
+
+button:focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 2px;
 }
@@ -1070,7 +1086,7 @@ blockquote.verse cite {
 
     .nav-menu a,
     .nav-menu .nav-link {
-        padding: var(--spacing-xs) var(--spacing-sm);
+        padding: var(--spacing-xs) var(--spacing-md);
         margin: 0 0.125rem;
         font-size: var(--font-size-small);
         color: var(--color-text-muted);
@@ -1082,6 +1098,12 @@ blockquote.verse cite {
     .nav-menu .nav-link:hover {
         color: var(--color-text);
         background-color: transparent;
+    }
+
+    .nav-menu .search-icon {
+        display: block;
+        width: 18px;
+        height: 18px;
     }
 
     /* Hide mobile-only elements */
@@ -1140,12 +1162,16 @@ blockquote.verse cite {
 }
 
 .nav-link:hover,
-.nav-link:focus {
+.nav-link:focus-visible {
     background-color: var(--color-background-alt);
     color: var(--color-text);
 }
 
 .nav-link:focus {
+    outline: none;
+}
+
+.nav-link:focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 2px;
 }
@@ -1204,13 +1230,17 @@ blockquote.verse cite {
 }
 
 .social-link:hover,
-.social-link:focus {
+.social-link:focus-visible {
     color: var(--color-text);
     background-color: var(--color-background-alt);
     transform: translateY(-2px);
 }
 
 .social-link:focus {
+    outline: none;
+}
+
+.social-link:focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 2px;
 }
@@ -1418,6 +1448,31 @@ blockquote.verse cite {
     margin-bottom: var(--spacing-lg);
 }
 
+.footer-social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.footer-social a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.footer-social a:hover {
+    color: var(--color-text);
+}
+
+.footer-social svg,
+.footer-social i {
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+}
+
 .powered-by {
     margin: var(--spacing-sm) 0;
     font-size: var(--font-size-small);
@@ -1456,13 +1511,13 @@ button, .button, input[type="submit"], input[type="button"],
     transition: all var(--transition-fast);
     font-family: inherit;
     padding: var(--button-padding);
-    font-size: var(--font-size-small);
+    font-size: 1em;
 }
 
 /* Compact button variant */
 .post-categories .category-button {
     padding: var(--button-padding-compact);
-    font-size: var(--font-size-xs);
+    font-size: 1em;
     min-height: 36px;
 }
 
@@ -1495,19 +1550,20 @@ button:focus, .button:focus, input[type="submit"]:focus, input[type="button"]:fo
 
 
 /* Form Elements */
-input[type="text"], input[type="email"], input[type="search"], 
+input[type="text"], input[type="email"], input[type="search"],
 input[type="url"], input[type="password"], textarea, select {
     display: inline-block;
     padding: var(--button-padding);
     min-height: var(--touch-target-height);
     background-color: var(--color-background);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-small);
+    border: 1px solid var(--color-input-border);
+    border-radius: var(--radius-large);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     color: var(--color-text);
     font-family: inherit;
-    font-size: var(--font-size-small);
+    font-size: 1em;
     line-height: 1;
-    transition: border-color var(--transition-fast);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
     width: 100%;
 }
 
@@ -1895,10 +1951,21 @@ table {
     padding-bottom: 0;
 }
 
+.page-header {
+    text-align: center;
+    margin-bottom: var(--spacing-3xl);
+}
+
 .page-title {
-    margin: 0 0 var(--spacing-sm);
-    font-size: 1.25rem;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    margin: 0 0 var(--spacing-md) 0;
     line-height: var(--line-height-tight);
+}
+
+.page-description {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-large);
 }
 
 .page-title a {
@@ -2079,7 +2146,8 @@ details:last-of-type {
  */
 
 /* Portfolio Page Container */
-.main-content:has(.portfolio-page) {
+.main-content:has(.portfolio-page),
+.main-content:has(.blog-page) {
     max-width: var(--container-width-wide);
 }
 
@@ -2126,11 +2194,11 @@ details:last-of-type {
 }
 
 .hero-intro {
-    font-size: var(--font-size-small);
+    font-size: var(--font-size-base);
     line-height: var(--line-height-base);
     color: var(--color-text-muted);
     max-width: 600px;
-    margin: var(--spacing-lg) 0 0 0;
+    margin: var(--spacing-sm) 0 0 0;
 }
 
 .hero-intro a {
@@ -2455,6 +2523,16 @@ details:last-of-type {
     color: var(--color-text);
 }
 
+.blog-item-title a {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.blog-item-title a:hover {
+    color: var(--color-link-hover);
+}
+
 .blog-item-link {
     font-size: var(--font-size-small);
     color: var(--color-text-muted);
@@ -2478,6 +2556,7 @@ details:last-of-type {
 }
 
 .blog-item-image {
+    display: block;
     width: 100%;
     max-width: 200px;
     aspect-ratio: 4 / 3;
@@ -2497,24 +2576,167 @@ details:last-of-type {
     transform: scale(1.05);
 }
 
-
-/* ===== THEME TOGGLE BUTTON =====
- * Moon emoji toggle in header navigation */
-
-.theme-toggle-btn {
-    background: none;
-    border: none;
-    padding: var(--spacing-sm);
-    cursor: pointer;
-    font-size: 1.35rem;
-    line-height: 1;
-    opacity: 0.7;
-    transition: opacity var(--transition-fast), transform var(--transition-fast);
+/* Blog Page (filtered by category) */
+.blog-page {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
 }
 
-.theme-toggle-btn:hover {
-    opacity: 1;
-    transform: scale(1.15);
+.blog-page .page-description {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-large);
+}
+
+.blog-posts {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2xl);
+}
+
+.blog-post-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    padding-bottom: var(--spacing-2xl);
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.blog-post-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+@media (min-width: 640px) {
+    .blog-post-item {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: var(--spacing-xl);
+    }
+}
+
+.blog-post-content {
+    flex: 1;
+}
+
+.blog-post-date {
+    display: block;
+    font-size: var(--font-size-small);
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-sm);
+}
+
+.blog-post-title {
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+    font-weight: 600;
+    margin: 0 0 var(--spacing-sm) 0;
+    line-height: var(--line-height-tight);
+}
+
+.blog-post-title a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.blog-post-title a:hover {
+    color: var(--color-link-hover);
+}
+
+.blog-post-excerpt {
+    color: var(--color-text-light);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    margin: 0 0 var(--spacing-md) 0;
+}
+
+.blog-post-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-size: var(--font-size-small);
+    color: var(--color-link);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.blog-post-link:hover {
+    color: var(--color-link-hover);
+}
+
+.blog-post-link span {
+    transition: transform var(--transition-fast);
+}
+
+.blog-post-link:hover span {
+    transform: translateX(4px);
+}
+
+.blog-post-image {
+    width: 100%;
+    max-width: 280px;
+    aspect-ratio: 16 / 10;
+    border-radius: var(--radius-medium);
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.blog-post-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-base);
+}
+
+.blog-post-item:hover .blog-post-image img {
+    transform: scale(1.03);
+}
+
+.no-posts {
+    text-align: center;
+    color: var(--color-text-muted);
+    padding: var(--spacing-3xl) 0;
+}
+
+
+/* ===== NAV DIVIDER =====
+ * Vertical divider between nav items and theme toggle */
+
+.nav-menu .nav-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 var(--spacing-sm);
+    margin: 0;
+}
+
+.nav-menu .nav-divider::before {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 1rem;
+    background-color: var(--color-text-muted);
+    opacity: 0.5;
+}
+
+/* ===== THEME TOGGLE BUTTON =====
+ * SVG icon toggle in header navigation */
+
+.nav-item-toggle {
+    display: flex;
+    align-items: center;
+}
+
+.theme-toggle-btn {
+    background: transparent;
+    border: none;
+    padding: var(--spacing-xs) var(--spacing-md);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+    border-radius: var(--radius-small);
 }
 
 .theme-toggle-btn:focus {
@@ -2527,6 +2749,62 @@ details:last-of-type {
     border-radius: var(--radius-small);
 }
 
-.toggle-icon {
-    display: inline-block;
+.theme-toggle-btn .toggle-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+/* Hide moon icon by default (shown via JS in light mode) */
+.theme-toggle-btn .moon-icon {
+    display: none;
+}
+
+/* Icon labels - hidden on desktop, shown on mobile */
+.icon-label {
+    display: none;
+}
+
+/* Toggle labels - controlled by JS based on theme */
+.toggle-label-light,
+.toggle-label-dark {
+    display: none;
+}
+
+/* Hide divider on mobile */
+@media (max-width: 768px) {
+    .nav-menu .nav-divider {
+        display: none;
+    }
+
+    .icon-label {
+        display: inline;
+        margin-left: var(--spacing-sm);
+    }
+
+    /* Make toggle button behave like nav links on mobile */
+    .nav-item-toggle {
+        display: block;
+        width: 100%;
+    }
+
+    .theme-toggle-btn {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: calc(100% - var(--spacing-md) * 2);
+        padding: var(--spacing-md) var(--spacing-lg);
+        min-height: 48px;
+        color: var(--color-text);
+        font-size: var(--font-size-base);
+        font-weight: 400;
+        text-align: left;
+        border-radius: var(--radius-small);
+        margin: 0 var(--spacing-md) var(--spacing-xs);
+        gap: var(--spacing-sm);
+    }
+
+    .theme-toggle-btn:hover {
+        background-color: var(--color-background-alt);
+    }
 }

@@ -1,11 +1,10 @@
 {{ define "main" }}
-<article class="post">
-    <header class="post-header">
-        {{ if .Title }}
-        <h2 class="post-title">{{ .Title }}</h2>
-        {{ end }}
-        
+<article class="page-single">
+    {{ if .Title }}
+    <header class="page-header">
+        <h1 class="page-title">{{ .Title }}</h1>
     </header>
+    {{ end }}
 
     {{ if templates.Exists "partials/microhook-before-page-content.html" }}
     {{ partial "microhook-before-page-content.html" . }}
