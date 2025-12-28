@@ -37,8 +37,7 @@
                     {{ $isCaseStudy = true }}
                 {{ end }}
             {{ end }}
-            {{ if not $isCaseStudy }}{{ continue }}{{ end }}
-
+            {{ if $isCaseStudy }}
             {{ $categories := .Params.categories }}
             {{ $category := "" }}
             {{ if $categories }}
@@ -81,6 +80,7 @@
                     {{ end }}
                 </a>
             </article>
+            {{ end }}
         {{ end }}
     </section>
 

@@ -1566,7 +1566,7 @@ button, .button, input[type="submit"], input[type="button"],
 /* Fix input[type="submit"] text centering - flexbox doesn't center input values */
 input[type="submit"], input[type="button"] {
     text-align: center;
-    line-height: 46px; /* height minus border */
+    line-height: 1;
     padding-top: 0;
     padding-bottom: 0;
     box-sizing: border-box;
