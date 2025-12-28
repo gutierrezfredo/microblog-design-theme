@@ -16,13 +16,13 @@
     </header>
 
     <section class="blog-list">
-        {{ $allPosts := where .Site.RegularPages "Type" "post" }}
+        {{ $allPosts := where .Site.RegularPages "Section" "post" }}
         {{ $blogPosts := slice }}
         {{ range $allPosts }}
-            {{ $cats := .Params.categories }}
-            {{ range $cats }}
+            {{ $post := . }}
+            {{ range .Params.categories }}
                 {{ if eq (. | lower) "blogs" }}
-                    {{ $blogPosts = $blogPosts | append $ }}
+                    {{ $blogPosts = $blogPosts | append $post }}
                 {{ end }}
             {{ end }}
         {{ end }}
