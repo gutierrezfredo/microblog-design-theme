@@ -8,16 +8,11 @@
     </header>
 
     <section class="blog-list">
-        {{ $blogPosts := where .Site.RegularPages "Type" "post" }}
-        {{ $filteredPosts := slice }}
-        {{ range $blogPosts }}
-            {{ if in .Params.categories "blogs" }}
-                {{ $filteredPosts = $filteredPosts | append . }}
-            {{ end }}
-        {{ end }}
+        {{/* Get posts from the "blogs" category using Hugo's taxonomy system */}}
+        {{ $blogsCategory := index .Site.Taxonomies.categories "blogs" }}
 
-        {{ if gt (len $filteredPosts) 0 }}
-            {{ range $filteredPosts }}
+        {{ if $blogsCategory }}
+            {{ range $blogsCategory.Pages.ByDate.Reverse }}
             <article class="blog-item">
                 <div class="blog-item-content">
                     <span class="blog-item-date">{{ .Date.Format "January 2, 2006" }}</span>
@@ -34,7 +29,7 @@
             </article>
             {{ end }}
         {{ else }}
-            <p class="no-posts">No blog posts yet.</p>
+            <p class="no-posts">No blog posts found.</p>
         {{ end }}
     </section>
 </div>
