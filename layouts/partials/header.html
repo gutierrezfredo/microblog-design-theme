@@ -2,6 +2,12 @@
     <div class="header-container h-card">
         <div class="site-branding">
             <div class="site-info">
+                {{ if eq .Type "post" }}
+                <a href="javascript:history.back()" class="back-button" aria-label="Go back">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                    <span>Back</span>
+                </a>
+                {{ else }}
                 <h1 class="site-title">
                     <a href="/" class="u-url" rel="home">
                         {{ if not .Site.Params.hide_profile_photo }}
@@ -14,6 +20,7 @@
                         <span class="p-name">{{ .Site.Title }}</span>
                     </a>
                 </h1>
+                {{ end }}
             </div>
         </div>
         

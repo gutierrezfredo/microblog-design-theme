@@ -710,6 +710,26 @@ blockquote.verse cite {
     color: var(--color-link);
 }
 
+/* Back button for post pages */
+.back-button {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-size: var(--font-size-small);
+    font-weight: 500;
+    transition: color var(--transition-fast);
+}
+
+.back-button:hover {
+    color: var(--color-text);
+}
+
+.back-button svg {
+    flex-shrink: 0;
+}
+
 
 /* ===== NAVIGATION MENU =====
  * The dropdown menu that appears when clicking the menu button.
@@ -1500,7 +1520,7 @@ blockquote.verse cite {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-2xl);
 }
 
 .footer-social a {
