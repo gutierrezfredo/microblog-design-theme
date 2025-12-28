@@ -22,6 +22,7 @@
 
         {{ if gt (len $blogPosts) 0 }}
             {{ range $blogPosts }}
+            {{ $post := . }}
             <article class="blog-item">
                 <div class="blog-item-content">
                     <span class="blog-item-date">{{ .Date.Format "January 2, 2006" }}</span>
@@ -31,8 +32,8 @@
                     <a href="{{ .Permalink }}" class="blog-item-link">Read <span>→</span></a>
                 </div>
                 {{ with .Params.photos }}
-                <a href="{{ $.Permalink }}" class="blog-item-image">
-                    <img src="{{ index . 0 }}" alt="{{ $.Title }}" loading="lazy">
+                <a href="{{ $post.Permalink }}" class="blog-item-image">
+                    <img src="{{ index . 0 }}" alt="{{ $post.Title }}" loading="lazy">
                 </a>
                 {{ end }}
             </article>

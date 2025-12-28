@@ -38,7 +38,28 @@
         </div>
     </div>
     {{ end }}
-    
+
+    {{/* Subscribe section for blogs, logs, and newsletters */}}
+    {{ $showSubscribe := false }}
+    {{ range .Params.categories }}
+        {{ $cat := . | lower }}
+        {{ if or (eq $cat "blogs") (eq $cat "logs") (eq $cat "newsletters") }}
+            {{ $showSubscribe = true }}
+        {{ end }}
+    {{ end }}
+    {{ if $showSubscribe }}
+    <aside class="post-subscribe">
+        <h3>Subscribe</h3>
+        <div class="subscribe-content">
+            <p>Subscribe to the email newsletter for this blog.</p>
+            <form method="POST" action="https://micro.blog/users/subscribe/{{ .Site.Params.site_id }}">
+                <input type="email" name="email" placeholder="Your email address" required>
+                <input type="submit" value="Subscribe">
+            </form>
+        </div>
+    </aside>
+    {{ end }}
+
     <footer class="post-footer">
         {{ if or (templates.Exists "partials/reply-by-email.html") (templates.Exists "partials/conversation-link.html") (not .Site.Params.hide_share_links) (not .Site.Params.hide_copy_links) }}
         <div class="post-actions">
