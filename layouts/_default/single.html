@@ -1,4 +1,7 @@
 {{ define "main" }}
+{{/* Hide pages used as content fragments */}}
+{{ $hiddenPages := slice "/intro/" "/footer/" "/social/" }}
+{{ if not (in $hiddenPages .RelPermalink) }}
 <article class="page-single">
     {{ if .Title }}
     <header class="page-header">
@@ -19,4 +22,5 @@
     {{ end }}
 
 </article>
+{{ end }}
 {{ end }}
