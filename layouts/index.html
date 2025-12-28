@@ -29,7 +29,16 @@
 
     <!-- Case Studies -->
     <section class="case-studies">
-        {{ range where .Site.RegularPages "Type" "post" }}
+        {{ $allPosts := where .Site.RegularPages "Type" "post" }}
+        {{ range $allPosts }}
+            {{ $isCaseStudy := false }}
+            {{ range .Params.categories }}
+                {{ if eq (. | lower) "case-studies" }}
+                    {{ $isCaseStudy = true }}
+                {{ end }}
+            {{ end }}
+            {{ if not $isCaseStudy }}{{ continue }}{{ end }}
+
             {{ $categories := .Params.categories }}
             {{ $category := "" }}
             {{ if $categories }}
@@ -38,13 +47,6 @@
 
             <article class="case-study-card">
                 <div class="case-study-content">
-                    {{/* Category icon/badge */}}
-                    {{ if $category }}
-                    <div class="case-study-badge">
-                        <span class="badge-icon">{{ substr $category 0 1 | upper }}</span>
-                    </div>
-                    {{ end }}
-
                     {{/* Title */}}
                     <h2 class="case-study-title">{{ .Title | default "Untitled Project" }}</h2>
 
@@ -86,7 +88,19 @@
     <section class="latest-posts">
         <h2 class="section-title">Latest from the Blog</h2>
         <div class="blog-list">
-            {{ range first 2 (where .Site.RegularPages "Type" "post") }}
+            {{ $blogPosts := slice }}
+            {{ range where .Site.RegularPages "Type" "post" }}
+                {{ $isBlog := false }}
+                {{ range .Params.categories }}
+                    {{ if eq (. | lower) "blogs" }}
+                        {{ $isBlog = true }}
+                    {{ end }}
+                {{ end }}
+                {{ if $isBlog }}
+                    {{ $blogPosts = $blogPosts | append . }}
+                {{ end }}
+            {{ end }}
+            {{ range first 2 $blogPosts }}
             {{ $post := . }}
             <article class="blog-item">
                 <div class="blog-item-content">

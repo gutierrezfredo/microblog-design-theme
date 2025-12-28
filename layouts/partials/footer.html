@@ -1,8 +1,8 @@
 <footer class="site-footer">
     <div class="footer-container">
         <div class="footer-content">
-            {{/* Social icons from /footer/ page */}}
-            {{ $footer := .Site.GetPage "/footer" }}
+            {{/* Social icons from /social/ page */}}
+            {{ $footer := .Site.GetPage "/social" }}
             {{ with $footer }}
                 {{ if .Content }}
                 <div class="footer-social">
