@@ -1198,6 +1198,11 @@ blockquote.verse cite {
     color: var(--color-text);
 }
 
+.nav-link.active {
+    color: var(--color-text);
+    font-weight: 600;
+}
+
 .nav-link:focus {
     outline: none;
 }
@@ -2960,16 +2965,16 @@ details:last-of-type {
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        width: calc(100% - var(--spacing-md) * 2);
+        gap: var(--spacing-sm);
+        width: 100%;
         padding: var(--spacing-md) var(--spacing-lg);
         min-height: 48px;
         color: var(--color-text);
         font-size: var(--font-size-base);
-        font-weight: 400;
-        text-align: left;
-        border-radius: var(--radius-small);
-        margin: 0 var(--spacing-md) var(--spacing-xs);
-        gap: var(--spacing-sm);
+    }
+
+    .theme-toggle-btn .icon-label {
+        margin-left: 0;
     }
 
     .theme-toggle-btn:hover {
