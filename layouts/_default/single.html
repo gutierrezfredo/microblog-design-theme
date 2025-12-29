@@ -1,6 +1,6 @@
 {{ define "main" }}
 {{/* Redirect hidden pages to homepage */}}
-{{ $hiddenPages := slice "/intro/" "/footer/" "/social/" }}
+{{ $hiddenPages := slice "/intro/" "/footer/" "/social/" "/work/" }}
 {{ if in $hiddenPages .RelPermalink }}
 <script>window.location.replace('/');</script>
 <noscript><meta http-equiv="refresh" content="0;url=/"></noscript>
