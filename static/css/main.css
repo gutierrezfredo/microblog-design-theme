@@ -1757,6 +1757,11 @@ form input[type="submit"] {
     margin-top: var(--spacing-sm);
 }
 
+/* Subscribe page - full width button */
+.post-content form input[type="submit"] {
+    width: 100%;
+}
+
 /* Search Space Plugin Specific */
 #search-space-form {
     margin-bottom: var(--spacing-xl);
