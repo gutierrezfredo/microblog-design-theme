@@ -1,87 +1,33 @@
-# Mythos Theme
+# alfredo.design Theme
 
-![GitHub release](https://img.shields.io/github/v/release/MattSLangford/Mythos-Theme)
-![License](https://img.shields.io/github/license/MattSLangford/Mythos-Theme)
-![GitHub last commit](https://img.shields.io/github/last-commit/MattSLangford/Mythos-Theme)
+Custom Hugo theme for [alfredo.design](https://alfredo.design), based on the [Mythos Theme](https://github.com/MattSLangford/Mythos-Theme) by Matt Langford.
 
-A clean, fast, and readable theme for Micro.blog that gets out of the way of your writing. Black text, white background, and sharp typography that looks great on any device.
+## Purpose
 
-![Mythos Theme Screenshot](screenshot.png)
+This is the **production theme** for alfredo.design, a design portfolio hosted on Micro.blog. It contains all layouts, CSS, JavaScript, and assets that define the site's appearance.
 
-## What is Mythos?
+## Customizations
 
-Mythos is designed for people who want their blog to load fast and look professional without the clutter. It's perfect for writers, photographers, and anyone who wants their content to shine.
+This theme has been customized from the original Mythos theme with:
 
-**Key Features:**
-- **Fast loading** - 96KB uncompressed (19KB gzipped)
-- **Works everywhere** - Looks great on phones, tablets, and computers  
-- **Easy to read** - Clean typography and proper spacing
-- **Accessible** - Works with screen readers and keyboard navigation
-- **16 languages supported** - From English to Japanese to Ukrainian
-- **Social media ready** - Built-in support for major platforms with flexible icon layouts
-- **Customizable** - Change colors, add custom CSS, and more
-- **Photo friendly** - Beautiful image displays and photo grids
+- Custom logo with dark mode inversion
+- Portfolio homepage with case study cards
+- Transparent buttons with pill-shaped borders
+- Category pills/badges styling
+- Custom color palette (neutral/monochrome)
+- Mobile navigation improvements
+- Work page redirect to homepage
+- Custom layouts for logs and redirect pages
 
-## Installation
+## Usage
 
-1. Log into your Micro.blog account
-2. Go to **Plugins** in your dashboard  
-3. Click **Plug-in Directory**
-4. Find **Mythos Theme** and click **Install**
-5. Once installed, click **Settings** to customize your theme
+This repository is linked to Micro.blog as a custom theme. Changes pushed here are automatically pulled by Micro.blog.
 
-## Customization
+## Local Development
 
-Mythos comes with lots of options you can change right from your Micro.blog dashboard:
-
-- Choose your site language (16 languages available)
-- Change accent colors  
-- Hide or show different elements
-- Add your own custom CSS
-- Enable development mode for advanced customization
-
-## Documentation
-
-For complete setup instructions, customization guides, and examples, visit:
-
-**[mythos.micro.blog](https://mythos.micro.blog)**
-
-## What Makes It Special
-
-- **Smart navigation** - Mobile full-screen menu and desktop dropdown with scrollable support
-- **Social media integration** - Connect all your platforms with beautiful icon layouts
-- **Fediverse creator support** - Enhanced link previews on Mastodon and Threads
-- **Post summaries** - Show previews or full posts, your choice
-- **Photo collections** - Beautiful grid layouts for your photos
-- **Archive pages** - Clean chronological list of all your posts  
-- **Copy links** - One-click sharing with built-in copy buttons
-- **Footnotes** - Clean formatting for academic or detailed writing
-- **Dark mode support** - Automatically adapts to your device settings
+For local development, use the companion repo [microblog-design-local](https://github.com/gutierrezfredo/microblog-design-local) which symlinks to this theme.
 
 ## Credits
 
-**Created by:** [Matt Langford](https://mattlangford.com)  
-**Website:** [mattlangford.com](https://mattlangford.com)  
-**Mastodon:** [mastodon.social/@mtt](https://mastodon.social/@mtt)
-**Repository:** [github.com/mattlangford/mythos-theme](https://github.com/mattlangford/mythos-theme)  
-**License:** MIT License
-
-## Support & Donate
-
-- **Theme questions:** [GitHub Issues](https://github.com/mattlangford/mythos-theme/issues)
-- **Micro.blog help:** [help.micro.blog](https://help.micro.blog)
-- **Community:** [Micro.blog Community](https://help.micro.blog/)
-
-**Support Development:**
-- **GitHub Sponsors:** [github.com/sponsors/mattslangford](https://github.com/sponsors/mattslangford)
-- **Buy Me a Coffee:** [buymeacoffee.com/mattlangford](https://buymeacoffee.com/mattlangford)
-
-## Version History
-
-See [Releases](https://github.com/MattSLangford/Mythos-Theme/releases) for version history and release notes.
-
----
-
-**Built with ❤️ for the Micro.blog community**
-
-*Mythos focuses on what matters most: your words, your photos, your ideas. Everything else just gets out of the way.*
+- **Original Theme:** [Mythos Theme](https://github.com/MattSLangford/Mythos-Theme) by [Matt Langford](https://mattlangford.com)
+- **Customizations:** [Alfredo Gutierrez](https://alfredo.design)
