@@ -1355,7 +1355,7 @@ blockquote.verse cite {
 }
 
 .post-title a:hover {
-    color: var(--color-link);
+    color: var(--color-text);
 }
 
 .post-meta {
