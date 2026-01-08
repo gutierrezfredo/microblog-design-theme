@@ -659,22 +659,18 @@ blockquote.verse cite {
 /* ===== SITE HEADER =====
  * The top navigation bar that contains your site title and menu */
 .site-header {
-    background-color: var(--color-background);
+    background-color: transparent;
     position: sticky;
     top: 0;
     z-index: 100;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    mask-image: linear-gradient(to bottom, black 0%, black 75%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 75%, transparent 100%);
 }
 
 .site-header::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 30px;
-    background: linear-gradient(to bottom, var(--color-background), transparent);
-    transform: translateY(100%);
-    pointer-events: none;
+    content: none;
 }
 
 .header-container {
