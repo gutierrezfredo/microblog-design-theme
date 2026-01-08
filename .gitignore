@@ -35,6 +35,10 @@ $RECYCLE.BIN/
 hugo_stats.json
 .hugo_build.lock
 /resources/
+themes/mythos
+config.toml
+content/
+archetypes/
 
 # Micro.blog
 .microblog/
