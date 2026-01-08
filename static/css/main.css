@@ -2341,6 +2341,21 @@ details:last-of-type {
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
 }
 
+.avatar-shine {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+    mix-blend-mode: overlay;
+}
+
 @media (max-width: 640px) {
     .hero-avatar img,
     .avatar-shine {
